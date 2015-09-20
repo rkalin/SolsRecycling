@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Recycling Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body ng-app="recycleTracker">
+  <ul class="menu">
+    <li><a ng-href="#/home">Home</a></li>
+    <li><a ng-href="#/register">Register</a></li>
+      <li><a ng-href="#/signin">Sign in</a></li>
+      <li><a ng-href="#/viewTotal">Total Returns</a></li>
+      <li><a ng-href="#/viewTotalUser">User's Total</a></li>
+  </ul>
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <div ng-view></div>
+
+
+  <!-- Vendor -->
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-route.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-resource.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  <!-- app -->
+  <script src="js/app.js"></script>
+  <script src="js/routes.js"></script>
+
+  <!-- controllers -->
+  <script src="partials/home/homeController.js"></script>
+  <script src="partials/register/registerController.js"></script>
+  <script src="partials/signin/signinController.js"></script>
+  <script src="partials/viewTotal/viewTotalController.js"></script>
+  <script src="partials/viewTotalUser/viewTotalUserController.js"></script>
+
+  <!-- services -->
+  <!-- directives -->
+  <!-- filters -->
+</body>
+</html>
