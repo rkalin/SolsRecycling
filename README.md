@@ -1,6 +1,6 @@
 # Recycling SPA for Sol's
 
-* This project will be restricted to the local college users, except for the main totals page *
+* This project will be restricted to the local college users, except for the main totals page
 
 This project is to allow for users to see how many bottles are recycled for deposit.
 
