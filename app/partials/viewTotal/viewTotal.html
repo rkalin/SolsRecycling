@@ -1,31 +1,34 @@
-<h1>This is the partial for View Totals</h1>
-<p>No login required</p>
-
-<form>
-  Show amount returned by:
-  <input type="radio" ng-model="ShowBy" value="user" checked>User or Team
-  <input type="radio" ng-model="ShowBy" value="product">Product
-</form>
-
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Place</th>
-         <th>Group</th>
-        <th>User</th>
-        <th>Total Returned</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="success"><th>1st</th><th>Sigma Alpha Mu</th><th>Rich K.</th><th>512</th></tr>
-      <tr class="danger"><th>2nd</th><th>Sigma Sigma Sigma</th><th>Sara T.</th><th>510</th></tr>
-      <tr class="info"><th>3rd</th><th>Enginering House</th><th>Nick N.</th><th>498</th></tr>
-      <tr><th>4th</th><th>Art House</th><th>Beth E.</th><th>497</th></tr>
-      <tr><th>5th</th><th>Individual</th><th>John T.</th><th>490</th></tr>
-      <tr><th>6th</th><th>Pi Kappa Phi</th><th>Nick O.</th><th>489</th></tr>
-      <tr><th>7th</th><th>None</th><th>Susan W.</th><th>488</th></tr>
-    </tbody>
-   </table>
+<div class="container">
+    <div class="row">
+          Show amount returned by: <br>
+          <input type="radio" ng-model="ShowBy" value="user" ng-checked="true">Users
+          <input type="radio" ng-model="ShowBy" value="group">Groups
+          <input type="radio" ng-model="ShowBy" value="subgroup">Group-Users
+          <input type="radio" ng-model="ShowBy" value="product">Products
+    </div>
 </div>
-      
+<div class="container">
+    <div class="table">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th ng-if="ShowBy != 'product'">Place</th>
+            <th ng-if="ShowBy != 'product'">Group</th>
+            <th ng-if="ShowBy != 'product'">User</th>
+            <th ng-if="ShowBy != 'product'">Total Returned</th>
+            <th ng-if="ShowBy == 'product'">Type</th>
+            <th ng-if="ShowBy == 'product'">Product</th>
+            <th ng-if="ShowBy == 'product'"># Returned</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in tableInfo" ng-class="{'success': item.place == '1st', 'danger': item.place == '2nd', 'info': item.place == '3rd'}">
+          	<td>{{item.place}}</td>
+            <td>{{item.group}}</td>
+            <td>{{item.user}}</td>
+            <td>{{item.total}}</td>
+          </tr>
+        </tbody>
+       </table>
+    </div>
+</div>

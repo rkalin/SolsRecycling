@@ -6,8 +6,8 @@ angular.module('recycleTracker').config(['$routeProvider',
                 //controller: 'View2Ctrl'
             })
             .when('/viewTotal', {
-                templateUrl: 'app/partials/viewTotal/viewTotal.html'
-                //controller: 'View2Ctrl'
+                templateUrl: 'app/partials/viewTotal/viewTotal.html',
+                controller: 'viewTotalController'
             })
             .when('/viewTotalUser', {
                 templateUrl: 'app/partials/viewTotalUser/viewTotalUser.html'
