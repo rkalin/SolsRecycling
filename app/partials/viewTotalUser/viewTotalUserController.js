@@ -8,3 +8,5 @@ angular.module('recycleTracker').controller('viewTotalUserController', function(
           $scope.user = data;
     });
 });
+
+

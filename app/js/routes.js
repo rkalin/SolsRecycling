@@ -10,7 +10,8 @@ angular.module('recycleTracker').config(['$routeProvider',
                 controller: 'viewTotalController'
             })
             .when('/viewTotalUser', {
-                templateUrl: 'app/partials/viewTotalUser/viewTotalUser.html'
+                templateUrl: 'app/php/testData.php'
+                //templateUrl: 'app/partials/viewTotalUser/viewTotalUser.html'
                 //controller: 'View2Ctrl'
             })
             .otherwise({redirectTo: '/viewTotal'});

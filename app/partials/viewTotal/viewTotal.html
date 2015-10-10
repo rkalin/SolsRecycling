@@ -13,7 +13,7 @@
         <thead>
           <tr>
             <th ng-if="ShowBy != 'product'">Place</th>
-            <th ng-if="ShowBy != 'product'">Group</th>
+            <th ng-if="ShowBy != 'product' && ShowBy != 'user'">Group</th>
             <th ng-if="ShowBy != 'product' && ShowBy != 'group'">User</th>
             <th ng-if="ShowBy != 'product'">Total Returned</th>
             <th ng-if="ShowBy == 'product'">Type</th>
