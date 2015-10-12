@@ -6,34 +6,41 @@ $username = "w-menu";
 $dbname = "w_menu";
 
 $input_array = array();
-
+$line = 0;
 for($i =1; $i <=10; $i++) {
     $total_items = rand(80, 250);
-    for($c = 0; $c <= $total_items; c++) {
+    for($c = 0; $c <= $total_items; $c++) {
+        $line++;
         $item = rand(1,20);
-        $input_array = array('item' => $item, 'collection' => $i, 'date' => rand_date())
-    } 
+        array_push($input_array, array($line, $item, $i, rand_date()));
+    }
 }
 
-$dbConnection = new PDO('mysql:dbname=$dbname;host=$dbserver;charset=utf8', '$username', '$password');
+//$args = array_fill(0, count($input_array[0]), '?');
 
-$dbConnection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-$dbConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+try {
+$conn = new PDO("mysql:host=$dbserver;dbname=$dbname", $username, $password);
 
-$qry = "INSERT INTO returned (item_id, collection_id, date_recieved) VALUES (:val1, :val2, :val3)";
-$dbConnection->prepare($qry);
+//$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$dbConnection->beginTransaction();
+$qry = "INSERT INTO returned (returned_id, item_id, collection_id, recieved_date) VALUES (?,?,?,?)";
+echo "<br>SQL: $qry<br>";
+$stmt = $conn->prepare($qry);
 
-foreach ($values as $value) {
-    $stmt->execute([
-        ':val1' => $value['item'],
-        ':val2' => $value['collection'],
-        ':val3' => $value['date'],
-    ]);
+$conn->beginTransaction();
+
+foreach($input_array as $ia) {
+    $stmt->execute($ia);
 }
 
-$dbConnection->commit();
+$conn->commit();
+}
+catch(PDOException $e) {
+    $conn->rollback();
+    echo "Connection failed: " . $e->getMessage();
+}
+$conn = null;
 
 function rand_date() {
     /* Gets 2 dates as string, earlier and later date.
