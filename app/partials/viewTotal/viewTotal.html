@@ -16,7 +16,7 @@
             <th ng-if="ShowBy != 'product' && ShowBy != 'user'">Group</th>
             <th ng-if="ShowBy != 'product' && ShowBy != 'group'">User</th>
             <th ng-if="ShowBy != 'product'">Total Returned</th>
-            <th ng-if="ShowBy == 'product'">Type</th>
+            <th ng-if="ShowBy == 'product'">Pic</th>
             <th ng-if="ShowBy == 'product'">Product</th>
             <th ng-if="ShowBy == 'product'"># Returned</th>
           </tr>
@@ -24,12 +24,18 @@
         <tbody>
           <tr ng-if="ShowBy != 'product'" ng-repeat="item in tableInfo" ng-class="{'success': item.place == '1st', 'danger': item.place == '2nd', 'info': item.place == '3rd'}">
           	<td>{{item.place}}</td>
-            <td ng-if="ShowBy != 'user'">{{item.group}}</td>
+            <td ng-cloak ng-if="ShowBy != 'user'">{{item.group}}</td>
             <td ng-if="ShowBy != 'group'">{{item.user}}</td>
             <td>{{item.total}}</td>
           </tr>
           <tr ng-if="ShowBy == 'product'" ng-repeat="item in tableInfo">
-            <td>{{item.type}}</td>
+             <td> 
+                 <div class="row">
+                     <a class="thumbnail">
+                        <img ng-src="app/img/item_thumbnail/{{item.type}}/{{item.subtype}}/{{item.product}}.jpg" alt="app/img/item_thumbnail/{{item.type}}/{{item.subType}}/{{item.product}}.jpg">
+                     </a>
+                 </div>
+            </td>
             <td>{{item.product}}</td>
             <td>{{item.return}}</td>
           </tr>

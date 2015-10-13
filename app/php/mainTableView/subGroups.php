@@ -23,22 +23,20 @@ $i=0;
 foreach($result as $row) {
     if ($row['user'] == 'NULL') {
         $i++;
-        array_push($temp_group_array,array('place' => ordinal($i), 'group' => $row['groupName'], 'user' => "", 'total' => $row['total']));
+        temp = array('place' => ordinal($i), 'group' => $row['groupName'], 'user' => "", 'total' => $row['total']);
+        array_push($temp_group_array,temp);
     } else {
-        array_push($temp_user_array, array('group' => $row['groupName'], 'user' => $row['user'],'total' => $row['total']));
+        temp = array('group' => $row['groupName'], 'user' => $row['user'],'total' => $row['total']);
+        array_push($temp_user_array, temp);
     }    
 }
 asort($temp_user_array);
 asort($temp_group_array);
 
 foreach($temp_group_array as $tg) {
-    print_r($tg);
     array_push($final_group_array, $tg);
     foreach($temp_user_array as $tu)        
     if ($tu['groupName'] == $tg['groupName']) {
-        print_r ($tg);
-        echo "<br>";
-        print_r($tu);
         array_push($final_group_array, $tu);
     }
 }
