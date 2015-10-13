@@ -15,9 +15,10 @@ $stmt = $conn->prepare('SELECT * FROM allUsers;');
 $stmt->execute();
 
 $result = $stmt->fetchAll();
-$i = 1;
+$i = 0;
 $user_array = [];
 foreach($result as $row) {
+    $i++;
      $temp_array = array('place' => ordinal($i), 'user' => $row['user'], 'total' => $row['total']);
      array_push($user_array, $temp_array);
 }
@@ -25,11 +26,7 @@ foreach($result as $row) {
 $conn = null;
 
 echo json_encode($user_array);
-/*
- * <td>{{item.place}}</td>
- * <td>{{item.user}}</td>
- * <td>{{item.total}}</td>
-*/
+
 function ordinal($number) {
     $ends = array('th','st','nd','rd','th','th','th','th','th','th');
     if ((($number % 100) >= 11) && (($number%100) <= 13))
@@ -37,6 +34,5 @@ function ordinal($number) {
     else
         return $number. $ends[$number % 10];
 }
-
 
 ?>

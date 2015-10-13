@@ -1,42 +1,38 @@
 <?php
-$test = array(
-    array(
-     "place" => "1st",
-     "group" => "Staff",
-     "user" => "Rich K.",
-     "total" => 300
-    ),
-    array(
-     "place" => "2nd",
-     "group" => "Engineering House",
-     "user" => "Sara S.",
-     "total" => 297
-    ),
-    array(
-     "place" => "3rd",
-     "group" => "Sigma Sigma Sigma",
-     "user" => "Beth T.",
-     "total" => 296
-    ),
-    array(
-     "place" => "4th",
-     "group" => "",
-     "user" => "Nick I.",
-     "total" => 290
-    ),
-    array(
-     "place" => "5th",
-     "group" => "Art House",
-     "user" => "Tim P.",
-     "total" => 280
-    ),
-    array(
-     "place" => "6th",
-     "group" => "",
-     "user" => "Mark T.",
-     "total" => 179
-    )
-);
+require_once("SiteConfigVars.php");
+$dbserver = getConfigValue("dbHost_w_menu");
+$password = getConfigValue("dbPass_w_menu");
+$username = "w-menu";
+$dbname = "w_menu";
 
-echo json_encode($test);
+$conn = new PDO("mysql:host=$dbserver;dbname=$dbname", $username, $password);
+
+$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+$stmt = $conn->prepare('SELECT * FROM allGroups;');
+
+$stmt->execute();
+
+$result = $stmt->fetchAll();
+$i = 0;
+$user_array = [];
+foreach($result as $row) {
+    $i++;
+     $temp_array = array('place' => ordinal($i), 'group' => $row['name'], 'total' => $row['total']);
+     array_push($user_array, $temp_array);
+}
+
+$conn = null;
+
+echo json_encode($user_array);
+
+function ordinal($number) {
+    $ends = array('th','st','nd','rd','th','th','th','th','th','th');
+    if ((($number % 100) >= 11) && (($number%100) <= 13))
+        return $number. 'th';
+    else
+        return $number. $ends[$number % 10];
+}
+
 ?>

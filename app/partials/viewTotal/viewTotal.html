@@ -24,7 +24,7 @@
         <tbody>
           <tr ng-if="ShowBy != 'product'" ng-repeat="item in tableInfo" ng-class="{'success': item.place == '1st', 'danger': item.place == '2nd', 'info': item.place == '3rd'}">
           	<td>{{item.place}}</td>
-            <td>{{item.group}}</td>
+            <td ng-if="ShowBy != 'user'">{{item.group}}</td>
             <td ng-if="ShowBy != 'group'">{{item.user}}</td>
             <td>{{item.total}}</td>
           </tr>
