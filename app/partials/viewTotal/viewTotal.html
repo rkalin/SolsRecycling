@@ -8,7 +8,7 @@
     </div>
 </div>
 <div class="container">
-    <div class="table">
+    <div>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -31,9 +31,11 @@
           <tr ng-if="ShowBy == 'product'" ng-repeat="item in tableInfo">
              <td> 
                  <div class="row">
-                     <a class="thumbnail">
-                        <img ng-src="app/img/item_thumbnail/{{item.type}}/{{item.subtype}}/{{item.product}}.jpg" alt="app/img/item_thumbnail/{{item.type}}/{{item.subType}}/{{item.product}}.jpg">
-                     </a>
+                     <div class="col-sm-6 col-md-4">
+                         <a class="img-thumbnail">
+                            <img ng-src="app/img/item_thumbnails/{{item.type}}/{{item.subtype}}/{{item.product}}.jpg" alt="{{item.product}}.jpg">
+                         </a>
+                     </div>
                  </div>
             </td>
             <td>{{item.product}}</td>

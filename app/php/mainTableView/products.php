@@ -15,10 +15,9 @@ $stmt = $conn->prepare('SELECT * FROM allProducts;');
 $stmt->execute();
 
 $result = $stmt->fetchAll();
-$i = 0;
+
 $user_array = [];
 foreach($result as $row) {
-    $i++;
      $temp_array = array('type' => $row['c_type'], 'subtype' => $row['subcat'], 'product' => $row['name'], 'return' => $row['total']);
      array_push($user_array, $temp_array);
 }
